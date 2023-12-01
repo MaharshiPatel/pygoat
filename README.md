@@ -149,3 +149,32 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+
+
+
+
+# JFrog Scan deps
+## Prerequisites 
+- local, remote and virtual [python repositories](https://jfrog.com/help/r/jfrog-artifactory-documentation/pypi-repositories) created into Artifactory
+- Developer machine has Python install and PATH setup correctly
+- Get [JFrog CLI](https://jfrog.com/getcli/) on developers machine
+  - Please make sure JFrog CLI is configure correctly. [Instruction](https://github.com/jfrog/SwampUp2023/tree/main/JFTD103-JFrog_Platform_Automation/lab-0-Configure-JFrog-CLI)
+- JFrog Plugin/Extension setup from Marketplace in IDE 
+
+## Resolve Dependencies
+- MUST to have 
+  - either `pip` or `pip3` or `jf pipc` configure correctly
+  - Follow [this](https://jfrog.com/help/r/jfrog-artifactory-documentation/use-a-pip-configuration-file) to configure 
+- For native python client
+  - pip3 install -r requirements.txt
+    - this command will resolve dependencies via Artifactory Virtual repository
+- For JFrog CLI (NOTE: this is after `jf pipc`)
+  - jf pip install -r requirements.txt --build-name=my-pip-build --build-number=1 --module=test
+
+## Scan for SCA, SAST, Secret Detection etc
+- You can run scan using JFrog plugin
+- you can also run `jf audit`
+
+
+

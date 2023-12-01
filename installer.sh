@@ -10,3 +10,5 @@ apt-get -y -qq install python3-pip # python3 and pip installed
 apt-get -y -qq install git # installing git
 
 python3 -m pip install -r requirements.txt #installing pip requirements
+
+apt-get -y -qq update
