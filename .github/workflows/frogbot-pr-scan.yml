@@ -24,6 +24,10 @@ jobs:
       - uses: jfrog/frogbot@v2
         env:
           # [Mandatory]
+          # The GitHub token automatically generated for the job
+          JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+          # [Mandatory]
           # JFrog platform URL
           JF_URL: ${{ secrets.JF_URL }}
 
@@ -38,10 +42,6 @@ jobs:
           # [Mandatory if JF_ACCESS_TOKEN is not provided]
           # JFrog password. Must be provided with JF_USER
           # JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
-
-          # [Mandatory]
-          # The GitHub token automatically generated for the job
-          JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
           # [Optional, default: https://api.github.com]
           # API endpoint to GitHub
@@ -60,6 +60,14 @@ jobs:
           ##   the following variables inside the file, instead of here.          ##
           ##########################################################################
 
+          # [Optional, default: "FALSE"]
+          # Displays all existing vulnerabilities, including the ones that were added by the pull request.
+          JF_INCLUDE_ALL_VULNERABILITIES: "TRUE"
+          
+          # [Optional]
+          # Relative path to a Pip requirements.txt file. If not set, the python project's dependencies are determined and scanned using the project setup.py file.
+          JF_REQUIREMENTS_FILE: "requirements.txt"
+          
           # [Optional, default: "."]
           # Relative path to the root of the project in the Git repository
           # JF_WORKING_DIR: pyyaml_demo
@@ -72,17 +80,9 @@ jobs:
           # JFrog project. Learn more about it here: https://www.jfrog.com/confluence/display/JFROG/Projects
           # JF_PROJECT: <project-key>
 
-          # [Optional, default: "FALSE"]
-          # Displays all existing vulnerabilities, including the ones that were added by the pull request.
-          # JF_INCLUDE_ALL_VULNERABILITIES: ""
-
           # [Optional, default: "TRUE"]
           # Fails the Frogbot task if any security issue is found.
           # JF_FAIL: "FALSE"
-
-          # [Optional]
-          # Relative path to a Pip requirements.txt file. If not set, the python project's dependencies are determined and scanned using the project setup.py file.
-          JF_REQUIREMENTS_FILE: "requirements.txt"
 
           # [Optional]
           # Frogbot will download the project dependencies if they're not cached locally. To download the
